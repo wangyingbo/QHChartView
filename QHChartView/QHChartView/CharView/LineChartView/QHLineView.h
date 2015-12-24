@@ -16,6 +16,9 @@
 @property (strong, nonatomic) UIColor *bottomSpaceColor;
 @property (strong, nonatomic) UIColor *lineColor;
 
+@property (nonatomic) BOOL isEndPosition;
+
 @property (nonatomic) float lineWidth;
+
 
 @end

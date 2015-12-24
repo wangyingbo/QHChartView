@@ -30,25 +30,16 @@
     CGContextClosePath(currentContext);
     CGContextDrawPath(currentContext, kCGPathFill);
     
-//    CGContextSetFillColorWithColor(currentContext, [self.bottomSpaceColor CGColor]);
-//    CGContextBeginPath(currentContext);
-//    CGContextMoveToPoint(currentContext, round(self.startPoint.x), self.startPoint.y);
-//    CGContextAddLineToPoint(currentContext, round(self.endPoint.x), self.endPoint.y);
-//    CGContextAddLineToPoint(currentContext, round(self.endPoint.x), self.height);
-//    CGContextAddLineToPoint(currentContext, round(self.startPoint.x), self.height);
-//    CGContextClosePath(currentContext);
-//    CGContextDrawPath(currentContext, kCGPathFill);
     
     UIBezierPath *path1 = [UIBezierPath bezierPath];
     [path1 setLineWidth:self.lineWidth];
     [path1 moveToPoint:self.startPoint];
-    [path1 addLineToPoint:self.endPoint];
+    CGPoint endPostion = self.isEndPosition?CGPointMake(self.endPoint.x-2, self.endPoint.y):self.endPoint;
+    [path1 addLineToPoint:endPostion];
     path1.lineCapStyle = kCGLineCapRound;
     [self.lineColor set];
     [path1 strokeWithBlendMode:kCGBlendModeNormal alpha:1];
     
-
-
    
 }
 

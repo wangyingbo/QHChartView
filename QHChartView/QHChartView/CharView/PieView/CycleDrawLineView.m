@@ -14,7 +14,7 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [QHUtil colorWithHexString:@"#2C2C3A"].CGColor);
     CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 1.0);
     CGContextSetLineWidth(context, 2.0);
     

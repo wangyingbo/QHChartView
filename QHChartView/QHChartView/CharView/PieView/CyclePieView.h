@@ -6,8 +6,10 @@
 //  Copyright (c) 2015年 imqiuhang. All rights reserved.
 //
 
-#import "QHHead.h"
+#import <UIKit/UIKit.h>
 #import "CycleDrawLineView.h"
+
+#import "QHHead.h"
 
 @interface CyclePieView : UIView
 {
@@ -16,6 +18,8 @@
     CycleDrawLineView *cycleDrawLineView;
     CyclePieIntroductionView *cyclePieIntroductionView ;
 }
+
+- (void)animation;
 
 @property (nonatomic,strong)NSArray *cyclePieInfos;;
 

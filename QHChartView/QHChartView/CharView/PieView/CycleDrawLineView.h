@@ -6,8 +6,10 @@
 //  Copyright (c) 2015年 imqiuhang. All rights reserved.
 //
 
-#import "QHHead.h"
+#import <UIKit/UIKit.h>
+
 #import "CyclePieIntroductionView.h"
+
 
 @interface CycleDrawLineView : UIView
 
@@ -23,5 +25,7 @@
 @property (nonatomic,strong,getter=allAngles)NSArray *angles;
 
 - (int)getIndexWithAngele:(float)angle;
+
+
 
 @end

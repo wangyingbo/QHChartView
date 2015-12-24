@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B9D6A0506DEB016E8604B6A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8C4A223532C348B1C52D86 /* libPods.a */; };
 		EC672E2E1B855FBD00D791FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E2D1B855FBD00D791FA /* main.m */; };
 		EC672E311B855FBD00D791FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E301B855FBD00D791FA /* AppDelegate.m */; };
 		EC672E341B855FBD00D791FA /* WelcomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E331B855FBD00D791FA /* WelcomViewController.m */; };
@@ -23,12 +24,17 @@
 		EC672E6C1B8562F500D791FA /* CyclePieIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E631B8562F500D791FA /* CyclePieIntroductionView.m */; };
 		EC672E6D1B8562F500D791FA /* CyclePieView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E651B8562F500D791FA /* CyclePieView.m */; };
 		EC672E6E1B8562F500D791FA /* QHCycleRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E671B8562F500D791FA /* QHCycleRotationGestureRecognizer.m */; };
-		EC672E761B85632100D791FA /* UIView+QHUIViewCtg.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E711B85632100D791FA /* UIView+QHUIViewCtg.m */; };
-		EC672E771B85632100D791FA /* UILabel+QHLabelCtg.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E731B85632100D791FA /* UILabel+QHLabelCtg.m */; };
-		EC672E781B85632100D791FA /* NSString+QHNSStringCtg.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E751B85632100D791FA /* NSString+QHNSStringCtg.m */; };
-		EC672E7C1B85633E00D791FA /* QHUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EC672E7B1B85633E00D791FA /* QHUtil.m */; };
 		EC672E811B85693A00D791FA /* piePointerBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC672E7F1B85693A00D791FA /* piePointerBg@2x.png */; };
 		EC672E821B85693A00D791FA /* pieColorfulBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC672E801B85693A00D791FA /* pieColorfulBg@2x.png */; };
+		ECF3EC831C2B89300061D640 /* AlertViewWithBlockOrSEL.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC701C2B89300061D640 /* AlertViewWithBlockOrSEL.m */; };
+		ECF3EC841C2B89300061D640 /* NSObject+DataSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC721C2B89300061D640 /* NSObject+DataSecurity.m */; };
+		ECF3EC851C2B89300061D640 /* NSString+QHNSStringCtg.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC741C2B89300061D640 /* NSString+QHNSStringCtg.m */; };
+		ECF3EC861C2B89300061D640 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC751C2B89300061D640 /* NullSafe.m */; };
+		ECF3EC871C2B89300061D640 /* UIButton+QHButtonCtg.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC771C2B89300061D640 /* UIButton+QHButtonCtg.m */; };
+		ECF3EC881C2B89300061D640 /* UILabel+QHLabelCtg.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC791C2B89300061D640 /* UILabel+QHLabelCtg.m */; };
+		ECF3EC891C2B89300061D640 /* UIView+QHUIViewCtg.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC7B1C2B89300061D640 /* UIView+QHUIViewCtg.m */; };
+		ECF3EC8A1C2B89300061D640 /* QHUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC801C2B89300061D640 /* QHUtil.m */; };
+		ECF3EC8B1C2B89300061D640 /* QHUtilAss.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3EC821C2B89300061D640 /* QHUtilAss.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DBD12F0AC26FF8DBCE2829F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5208BC2F2AEFD5D5A39682BD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC672E281B855FBD00D791FA /* QHChartView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QHChartView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC672E2C1B855FBD00D791FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC672E2D1B855FBD00D791FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,18 +81,28 @@
 		EC672E651B8562F500D791FA /* CyclePieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CyclePieView.m; sourceTree = "<group>"; };
 		EC672E661B8562F500D791FA /* QHCycleRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHCycleRotationGestureRecognizer.h; sourceTree = "<group>"; };
 		EC672E671B8562F500D791FA /* QHCycleRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHCycleRotationGestureRecognizer.m; sourceTree = "<group>"; };
-		EC672E701B85632100D791FA /* UIView+QHUIViewCtg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+QHUIViewCtg.h"; sourceTree = "<group>"; };
-		EC672E711B85632100D791FA /* UIView+QHUIViewCtg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+QHUIViewCtg.m"; sourceTree = "<group>"; };
-		EC672E721B85632100D791FA /* UILabel+QHLabelCtg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+QHLabelCtg.h"; sourceTree = "<group>"; };
-		EC672E731B85632100D791FA /* UILabel+QHLabelCtg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+QHLabelCtg.m"; sourceTree = "<group>"; };
-		EC672E741B85632100D791FA /* NSString+QHNSStringCtg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+QHNSStringCtg.h"; sourceTree = "<group>"; };
-		EC672E751B85632100D791FA /* NSString+QHNSStringCtg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QHNSStringCtg.m"; sourceTree = "<group>"; };
-		EC672E791B85632F00D791FA /* macrodefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macrodefine.h; sourceTree = "<group>"; };
-		EC672E7A1B85633E00D791FA /* QHUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHUtil.h; sourceTree = "<group>"; };
-		EC672E7B1B85633E00D791FA /* QHUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHUtil.m; sourceTree = "<group>"; };
-		EC672E7D1B8563B200D791FA /* QHHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QHHead.h; sourceTree = "<group>"; };
 		EC672E7F1B85693A00D791FA /* piePointerBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "piePointerBg@2x.png"; sourceTree = "<group>"; };
 		EC672E801B85693A00D791FA /* pieColorfulBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pieColorfulBg@2x.png"; sourceTree = "<group>"; };
+		ECF3EC6F1C2B89300061D640 /* AlertViewWithBlockOrSEL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewWithBlockOrSEL.h; sourceTree = "<group>"; };
+		ECF3EC701C2B89300061D640 /* AlertViewWithBlockOrSEL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewWithBlockOrSEL.m; sourceTree = "<group>"; };
+		ECF3EC711C2B89300061D640 /* NSObject+DataSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DataSecurity.h"; sourceTree = "<group>"; };
+		ECF3EC721C2B89300061D640 /* NSObject+DataSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DataSecurity.m"; sourceTree = "<group>"; };
+		ECF3EC731C2B89300061D640 /* NSString+QHNSStringCtg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+QHNSStringCtg.h"; sourceTree = "<group>"; };
+		ECF3EC741C2B89300061D640 /* NSString+QHNSStringCtg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QHNSStringCtg.m"; sourceTree = "<group>"; };
+		ECF3EC751C2B89300061D640 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		ECF3EC761C2B89300061D640 /* UIButton+QHButtonCtg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+QHButtonCtg.h"; sourceTree = "<group>"; };
+		ECF3EC771C2B89300061D640 /* UIButton+QHButtonCtg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+QHButtonCtg.m"; sourceTree = "<group>"; };
+		ECF3EC781C2B89300061D640 /* UILabel+QHLabelCtg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+QHLabelCtg.h"; sourceTree = "<group>"; };
+		ECF3EC791C2B89300061D640 /* UILabel+QHLabelCtg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+QHLabelCtg.m"; sourceTree = "<group>"; };
+		ECF3EC7A1C2B89300061D640 /* UIView+QHUIViewCtg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+QHUIViewCtg.h"; sourceTree = "<group>"; };
+		ECF3EC7B1C2B89300061D640 /* UIView+QHUIViewCtg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+QHUIViewCtg.m"; sourceTree = "<group>"; };
+		ECF3EC7C1C2B89300061D640 /* macrodefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macrodefine.h; sourceTree = "<group>"; };
+		ECF3EC7D1C2B89300061D640 /* QHHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHHead.h; sourceTree = "<group>"; };
+		ECF3EC7F1C2B89300061D640 /* QHUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHUtil.h; sourceTree = "<group>"; };
+		ECF3EC801C2B89300061D640 /* QHUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHUtil.m; sourceTree = "<group>"; };
+		ECF3EC811C2B89300061D640 /* QHUtilAss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHUtilAss.h; sourceTree = "<group>"; };
+		ECF3EC821C2B89300061D640 /* QHUtilAss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHUtilAss.m; sourceTree = "<group>"; };
+		FC8C4A223532C348B1C52D86 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B9D6A0506DEB016E8604B6A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,12 +124,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84FBDF4A401CAB0FD7323156 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0DBD12F0AC26FF8DBCE2829F /* Pods.debug.xcconfig */,
+				5208BC2F2AEFD5D5A39682BD /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A8E33D6C225935DFC1451A77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC8C4A223532C348B1C52D86 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EC672E1F1B855FBD00D791FA = {
 			isa = PBXGroup;
 			children = (
 				EC672E2A1B855FBD00D791FA /* QHChartView */,
 				EC672E441B855FBD00D791FA /* QHChartViewTests */,
 				EC672E291B855FBD00D791FA /* Products */,
+				84FBDF4A401CAB0FD7323156 /* Pods */,
+				A8E33D6C225935DFC1451A77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,7 +212,7 @@
 			children = (
 				EC672E581B8562F500D791FA /* LineChartView */,
 				EC672E5F1B8562F500D791FA /* PieView */,
-				EC672E6F1B85630900D791FA /* QHSupports */,
+				ECF3EC6D1C2B89300061D640 /* QHUtil */,
 				EC672E7E1B85692400D791FA /* resource */,
 			);
 			path = CharView;
@@ -208,23 +246,6 @@
 			path = PieView;
 			sourceTree = "<group>";
 		};
-		EC672E6F1B85630900D791FA /* QHSupports */ = {
-			isa = PBXGroup;
-			children = (
-				EC672E701B85632100D791FA /* UIView+QHUIViewCtg.h */,
-				EC672E711B85632100D791FA /* UIView+QHUIViewCtg.m */,
-				EC672E721B85632100D791FA /* UILabel+QHLabelCtg.h */,
-				EC672E731B85632100D791FA /* UILabel+QHLabelCtg.m */,
-				EC672E741B85632100D791FA /* NSString+QHNSStringCtg.h */,
-				EC672E751B85632100D791FA /* NSString+QHNSStringCtg.m */,
-				EC672E791B85632F00D791FA /* macrodefine.h */,
-				EC672E7A1B85633E00D791FA /* QHUtil.h */,
-				EC672E7B1B85633E00D791FA /* QHUtil.m */,
-				EC672E7D1B8563B200D791FA /* QHHead.h */,
-			);
-			path = QHSupports;
-			sourceTree = "<group>";
-		};
 		EC672E7E1B85692400D791FA /* resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +255,48 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		ECF3EC6D1C2B89300061D640 /* QHUtil */ = {
+			isa = PBXGroup;
+			children = (
+				ECF3EC6E1C2B89300061D640 /* Categorys */,
+				ECF3EC7C1C2B89300061D640 /* macrodefine.h */,
+				ECF3EC7D1C2B89300061D640 /* QHHead.h */,
+				ECF3EC7E1C2B89300061D640 /* Util */,
+			);
+			path = QHUtil;
+			sourceTree = "<group>";
+		};
+		ECF3EC6E1C2B89300061D640 /* Categorys */ = {
+			isa = PBXGroup;
+			children = (
+				ECF3EC6F1C2B89300061D640 /* AlertViewWithBlockOrSEL.h */,
+				ECF3EC701C2B89300061D640 /* AlertViewWithBlockOrSEL.m */,
+				ECF3EC711C2B89300061D640 /* NSObject+DataSecurity.h */,
+				ECF3EC721C2B89300061D640 /* NSObject+DataSecurity.m */,
+				ECF3EC731C2B89300061D640 /* NSString+QHNSStringCtg.h */,
+				ECF3EC741C2B89300061D640 /* NSString+QHNSStringCtg.m */,
+				ECF3EC751C2B89300061D640 /* NullSafe.m */,
+				ECF3EC761C2B89300061D640 /* UIButton+QHButtonCtg.h */,
+				ECF3EC771C2B89300061D640 /* UIButton+QHButtonCtg.m */,
+				ECF3EC781C2B89300061D640 /* UILabel+QHLabelCtg.h */,
+				ECF3EC791C2B89300061D640 /* UILabel+QHLabelCtg.m */,
+				ECF3EC7A1C2B89300061D640 /* UIView+QHUIViewCtg.h */,
+				ECF3EC7B1C2B89300061D640 /* UIView+QHUIViewCtg.m */,
+			);
+			path = Categorys;
+			sourceTree = "<group>";
+		};
+		ECF3EC7E1C2B89300061D640 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				ECF3EC7F1C2B89300061D640 /* QHUtil.h */,
+				ECF3EC801C2B89300061D640 /* QHUtil.m */,
+				ECF3EC811C2B89300061D640 /* QHUtilAss.h */,
+				ECF3EC821C2B89300061D640 /* QHUtilAss.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -241,9 +304,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC672E4B1B855FBD00D791FA /* Build configuration list for PBXNativeTarget "QHChartView" */;
 			buildPhases = (
+				9E678D0AF6BC51E8ACAC393C /* Check Pods Manifest.lock */,
 				EC672E241B855FBD00D791FA /* Sources */,
 				EC672E251B855FBD00D791FA /* Frameworks */,
 				EC672E261B855FBD00D791FA /* Resources */,
+				6488EDE1555B7D2F52ADE554 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -331,6 +396,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6488EDE1555B7D2F52ADE554 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E678D0AF6BC51E8ACAC393C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EC672E241B855FBD00D791FA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -339,19 +437,24 @@
 				EC672E6C1B8562F500D791FA /* CyclePieIntroductionView.m in Sources */,
 				EC672E341B855FBD00D791FA /* WelcomViewController.m in Sources */,
 				EC672E6B1B8562F500D791FA /* CycleDrawLineView.m in Sources */,
+				ECF3EC841C2B89300061D640 /* NSObject+DataSecurity.m in Sources */,
 				EC672E311B855FBD00D791FA /* AppDelegate.m in Sources */,
 				EC672E6D1B8562F500D791FA /* CyclePieView.m in Sources */,
+				ECF3EC871C2B89300061D640 /* UIButton+QHButtonCtg.m in Sources */,
+				ECF3EC881C2B89300061D640 /* UILabel+QHLabelCtg.m in Sources */,
+				ECF3EC891C2B89300061D640 /* UIView+QHUIViewCtg.m in Sources */,
+				ECF3EC831C2B89300061D640 /* AlertViewWithBlockOrSEL.m in Sources */,
+				ECF3EC8A1C2B89300061D640 /* QHUtil.m in Sources */,
 				EC672E6E1B8562F500D791FA /* QHCycleRotationGestureRecognizer.m in Sources */,
 				EC672E561B8560EF00D791FA /* LineChartViewController.m in Sources */,
-				EC672E771B85632100D791FA /* UILabel+QHLabelCtg.m in Sources */,
 				EC672E6A1B8562F500D791FA /* QHLineView.m in Sources */,
-				EC672E761B85632100D791FA /* UIView+QHUIViewCtg.m in Sources */,
-				EC672E7C1B85633E00D791FA /* QHUtil.m in Sources */,
-				EC672E781B85632100D791FA /* NSString+QHNSStringCtg.m in Sources */,
+				ECF3EC851C2B89300061D640 /* NSString+QHNSStringCtg.m in Sources */,
 				EC672E681B8562F500D791FA /* QHCircleDotView.m in Sources */,
+				ECF3EC8B1C2B89300061D640 /* QHUtilAss.m in Sources */,
 				EC672E531B8560DC00D791FA /* PieChartViewController.m in Sources */,
 				EC672E691B8562F500D791FA /* QHLineChartView.m in Sources */,
 				EC672E2E1B855FBD00D791FA /* main.m in Sources */,
+				ECF3EC861C2B89300061D640 /* NullSafe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +578,7 @@
 		};
 		EC672E4C1B855FBD00D791FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DBD12F0AC26FF8DBCE2829F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QHChartView/Info.plist;
@@ -486,6 +590,7 @@
 		};
 		EC672E4D1B855FBD00D791FA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5208BC2F2AEFD5D5A39682BD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QHChartView/Info.plist;
@@ -548,6 +653,7 @@
 				EC672E4D1B855FBD00D791FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC672E4E1B855FBD00D791FA /* Build configuration list for PBXNativeTarget "QHChartViewTests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +662,7 @@
 				EC672E501B855FBD00D791FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

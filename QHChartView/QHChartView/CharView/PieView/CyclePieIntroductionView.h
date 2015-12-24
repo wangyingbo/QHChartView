@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 imqiuhang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "QHHead.h"
 
 @class CyclePieInfo;
 

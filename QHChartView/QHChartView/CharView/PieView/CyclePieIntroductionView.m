@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 imqiuhang. All rights reserved.
 //
 
-#import "QHHead.h"
 #import "CyclePieIntroductionView.h"
 
 @implementation CyclePieIntroductionView

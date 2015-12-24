@@ -7,23 +7,46 @@
 //
 
 #define animationLineSpeed 10.f
-#define minBottomGap 80.f
+
+#define minIntroductionLablesTag 789098
+
+#define bottomHeight 80
+
+#define lineTopGap 80.f
+
+#define ruleXGap 10.f
 
 #import "QHLineChartView.h"
 
 @implementation QHLineChartView
-
+{
+    UIView *lineContenView;
+    UIImageView *bottonRuleImageView;
+    
+    NSMutableArray *dotPositions;
+    
+    NSMutableArray *dotViews;
+}
 
 - (void)setChartInfos:(NSArray *)chartInfos {
     _chartInfos = chartInfos;
+    for(CyclePieInfo *info in _chartInfos) {
+        info.number = info.number>=1?info.number:1;
+    }
     [self reloadView];
 }
 
 - (void)initBaseData {
-
+    self.shouldAnimationWhenReload = YES;
     self.underLineSpaceColor = [UIColor blackColor];
     self.topLineSpaceColor = [UIColor blackColor];
     curChoosedTag = -1;
+    
+    lineContenView = [[UIView alloc] initWithFrame:self.bounds];
+    lineContenView.height = self.height - bottomHeight;
+    lineContenView.width = self.width  - 80;
+    lineContenView.centerX = self.width/2.f;
+    [self addSubview:lineContenView];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -38,24 +61,34 @@
     if (!self.chartInfos||self.chartInfos.count<=0) {
         return;
     }
+    
+    
+    
     [self reloadLinesAndDots];
     [self reloadIntroductionLables];
     
-    UIView *panGestureRecognizerView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, self.width, self.height)];
-    panGestureRecognizerView.backgroundColor = [UIColor clearColor];
-    [self addSubview:panGestureRecognizerView];
-    
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [panGestureRecognizerView addGestureRecognizer:panGestureRecognizer];
+    if (!panGestureRecognizerView) {
+        panGestureRecognizerView = [[UIView alloc] initWithFrame:self.bounds];
+        panGestureRecognizerView.bottom = self.height - bottomHeight +25;
+        panGestureRecognizerView.backgroundColor = [UIColor clearColor];
+        [self addSubview:panGestureRecognizerView];
+        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        [panGestureRecognizerView addGestureRecognizer:panGestureRecognizer];
+        
+        UILongPressGestureRecognizer *longG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        longG.minimumPressDuration = 0.f;
+        [panGestureRecognizerView addGestureRecognizer:longG];
+    }
+
   
 }
 
-- (void)handlePan:(UIPanGestureRecognizer *)recognizer {
+- (void)handlePan:(UIGestureRecognizer *)recognizer {
     if (!touchFlowLineView) {
-        touchFlowLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, self.height)];
+        touchFlowLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, lineContenView.height)];
         touchFlowLineView.backgroundColor = [UIColor whiteColor];
         touchFlowLineView.alpha = 0;
-        [self addSubview:touchFlowLineView];
+        [lineContenView addSubview:touchFlowLineView];
     }
     
     if (!touchNumLable) {
@@ -63,18 +96,26 @@
         [touchNumLable setText:nil andFont:defaultFont(24) andTextColor:[UIColor whiteColor]];
         touchNumLable.textAlignment  =NSTextAlignmentCenter;
         
-        [self addSubview:touchNumLable];
+        [lineContenView addSubview:touchNumLable];
     }
     touchNumLable.alpha  = 1.f;
     
-    CGPoint translation = [recognizer locationInView:self];
+    CGPoint translation = [recognizer locationInView:lineContenView];
     
     touchFlowLineView.left = translation.x;
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         touchFlowLineView.alpha = 0.6;
     } completion:nil];
     
-    touchedDot = [self closestDotFromVerticalLine:touchFlowLineView];
+    int touchDotIndex = [self closestDotFromVerticalLine:touchFlowLineView];
+    touchedDot = dotViews[touchDotIndex];
+    [lineContenView bringSubviewToFront:touchedDot];
+    
+    float touchedVy = [self getDotYWithVLinePositionX:touchFlowLineView.left];
+    
+    touchFlowLineView.top = touchedVy;
+    touchFlowLineView.height = lineContenView.height - touchedVy;
+    
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         touchNumLable.centerX = touchedDot.left - 50;
@@ -82,7 +123,7 @@
     }
     
     CyclePieInfo *info = self.chartInfos [touchedDot.tag];
-    touchNumLable.text = [NSString stringWithFormat:@"%i",info.number];
+    touchNumLable.text = [NSString stringWithFormat:@"%i人",info.number];
     [touchNumLable sizeToFit];
     if ((int)touchedDot.tag!=curChoosedTag) {
         [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -119,29 +160,37 @@
 
 - (void)reloadLinesAndDots {
     
-    for (UIView *subview in [self subviews]) {
+    for (UIView *subview in [lineContenView subviews]) {
         if ([subview isKindOfClass:[QHCircleDotView class]]||[subview isKindOfClass:[QHLineView class]])
             [subview removeFromSuperview];
     }
     
-    NSMutableArray *positions = [[NSMutableArray alloc] initWithCapacity:self.chartInfos.count];
+    dotPositions = [[NSMutableArray alloc] initWithCapacity:self.chartInfos.count];
+    dotViews = [[NSMutableArray alloc] initWithCapacity:self.chartInfos.count];
+    
+    float max = [self getMaxNumber];
     
     for (int i = 0; i < self.chartInfos.count; i++) {
         
         CyclePieInfo *info = self.chartInfos[i];
-        float dotValue = info.number;
+
         
-        float positionX = (self.width/(self.chartInfos.count - 1))*i;
-        float positionY = (self.height - minBottomGap) - ((dotValue - [self getMinNumber]) / (([self getMaxNumber] - [self getMinNumber]) / (self.height - minBottomGap))) + 40;
         
-        [positions addObject:[NSValue valueWithCGPoint:CGPointMake(positionX, positionY)]];
+        float positionX = (lineContenView.width/(self.chartInfos.count - 1))*i;
+        
+        float maxHeight = lineContenView.height- lineTopGap;
+       
+        float positionY = lineContenView.height-(maxHeight/max*info.number);
+       
+        
+        [dotPositions addObject:[NSValue valueWithCGPoint:CGPointMake(positionX, positionY)]];
         
         QHCircleDotView *circleDot = [[QHCircleDotView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
         circleDot.center = CGPointMake(positionX, positionY);
         circleDot.tag = i;
         circleDot.alpha = 0;
-        [self addSubview:circleDot];
-        
+        [lineContenView addSubview:circleDot];
+        [dotViews addObject:circleDot];
         [UIView animateWithDuration:0.5 delay:i/(animationLineSpeed) options:UIViewAnimationOptionCurveEaseOut animations:^{
             circleDot.alpha = 1.f;
         } completion:^(BOOL finished){
@@ -153,23 +202,28 @@
         
     }
     
-    for (int i = 0; i < positions.count-1; i++) {
-        CGPoint positionLeft = [positions[i] CGPointValue];
-        CGPoint positionRight = [positions[i+1] CGPointValue];
+    for (int i = 0; i < dotPositions.count-1; i++) {
+        CGPoint positionLeft = [dotPositions[i] CGPointValue];
+        CGPoint positionRight = [dotPositions[i+1] CGPointValue];
         QHLineView *lineView = [[QHLineView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        lineView.isEndPosition = i==dotPositions.count-2;
         lineView.startPoint = CGPointMake(positionLeft.x, positionLeft.y);
         lineView.endPoint = CGPointMake(positionRight.x, positionRight.y);
         lineView.topSpaceColor = self.topLineSpaceColor;
         lineView.bottomSpaceColor = self.underLineSpaceColor;
         lineView.lineColor = [UIColor whiteColor];
         lineView.lineWidth = 3.0;
-        [self addSubview:lineView];
-        [self sendSubviewToBack:lineView];
-        
-        lineView.alpha = 0;
-        [UIView animateWithDuration:1.5 delay:i/(animationLineSpeed) options:UIViewAnimationOptionCurveEaseOut animations:^{
-            lineView.alpha = 1.0;
-        } completion:nil];
+        [lineContenView addSubview:lineView];
+        [lineContenView sendSubviewToBack:lineView];
+        if (self.shouldAnimationWhenReload) {
+            lineView.alpha = 0;
+            [UIView animateWithDuration:1.0 delay:i/(animationLineSpeed) options:UIViewAnimationOptionCurveEaseOut animations:^{
+                lineView.alpha = 1.0;
+            } completion:nil];
+        }else {
+            lineView.alpha = 1.f;
+        }
+
 
     }
 }
@@ -209,33 +263,66 @@
 }
 
 
-- (QHCircleDotView *)closestDotFromVerticalLine:(UIView *)aVerticalLine {
+- (int)closestDotFromVerticalLine:(UIView *)aVerticalLine {
     
     int currentTouchTag  = INT_MAX;
+    int dotIndex = 0;
+    for (int i=0;i<dotViews.count;i++) {
+        QHCircleDotView *curDotView = dotViews[i];
+        
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            curDotView.alpha = 0;
+        } completion:nil];
+        
+        if (pow(((curDotView.center.x) - aVerticalLine.left), 2) < currentTouchTag) {
+            currentTouchTag = pow(((curDotView.center.x) - aVerticalLine.left), 2);
+            dotIndex = i;
+        }
+        
+    }
     
-    for (QHCircleDotView *curDotView in self.subviews) {
-        if ([curDotView isKindOfClass:[QHCircleDotView class]]) {
-            
-            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                curDotView.alpha = 0;
-            } completion:nil];
-            
-            if (pow(((curDotView.center.x) - aVerticalLine.left), 2) < currentTouchTag) {
-                currentTouchTag = pow(((curDotView.center.x) - aVerticalLine.left), 2);
-                touchedDot = curDotView;
-            }
+    return dotIndex;
+}
+
+- (float)getDotYWithVLinePositionX:(float)vx {
+    if (vx<=[[dotPositions firstObject] CGPointValue].x||vx>=[[dotPositions lastObject] CGPointValue].x) {
+        return lineContenView.height;
+    }
+    
+    int leftIndex = -1;
+    
+    for(int i=0;i<dotPositions.count-1;i++) {
+        if (vx>[dotPositions [i] CGPointValue].x&&vx<=[dotPositions [i+1] CGPointValue].x) {
+            leftIndex = i;
+            break;
         }
     }
     
-    return touchedDot;
+    if (leftIndex<0) {
+        return lineContenView.height;
+    }
+    
+    CGPoint left = [dotPositions[leftIndex] CGPointValue];
+    CGPoint right = [dotPositions[leftIndex+1] CGPointValue];
+    
+    if (left.y>=right.y) {
+        float height = fabs((vx - left.x)/(right.x-left.x)*(right.y-left.y));
+        return MAX(left.y, right.y)-height;
+    }else {
+        float height = fabs((right.x - vx)/(right.x-left.x)*(right.y-left.y));
+        return MAX(left.y, right.y)-height;
+    }
+
 }
 
 - (void)reloadIntroductionLables {
     
     for (UIView *subview in [self subviews]) {
-        if ([subview isKindOfClass:[UILabel class]])
+        if (([subview isKindOfClass:[UILabel class]]&&subview.tag>=minIntroductionLablesTag)||subview.tag<0)
             [subview removeFromSuperview];
     }
+    
+    NSMutableArray *lableCenterPositions = [[NSMutableArray alloc] initWithCapacity:10];
     
     for (int i = 0; i < self.chartInfos.count; i++) {
         UILabel *introductionLable = [[UILabel alloc] init];
@@ -245,19 +332,78 @@
         introductionLable.height = 30.f;
         introductionLable.left = i*self.width/(self.chartInfos.count);
         introductionLable.textAlignment = NSTextAlignmentCenter;
-        introductionLable.centerY = self.height - 10;
+        introductionLable.centerY = self.height - bottomHeight/2.f;
         introductionLable.textAlignment = 1;
+        introductionLable.tag = i+minIntroductionLablesTag;
         [self addSubview:introductionLable];
+        [lableCenterPositions addObject:[NSValue valueWithCGPoint:introductionLable.center]];
     }
     
+    for (int px = ruleXGap; px<self.width; px+=ruleXGap) {
+        UIView *ruleLine = [[UIView alloc] initWithFrame:CGRectMake(px, self.height - bottomHeight+10, 1.5, 0)];
+        ruleLine.height = [self isNearLableCenter:[dotPositions copy] positionX:ruleLine.right gap:ruleXGap]?9:5;
+        ruleLine.tag = -1;
+        ruleLine.layer.cornerRadius = 1;
+        ruleLine.backgroundColor = [UIColor whiteColor];
+        [self addSubview:ruleLine];
+    }
+    
+    NSMutableArray *ruleLines = [[NSMutableArray alloc] init];
+    
+    for (int py = lineContenView.bottom; py>=lineContenView.top+lineTopGap; py-=ruleXGap) {
+        UIView *ruleLine = [[UIView alloc] initWithFrame:CGRectMake(10, py, 0, 1.5)];
+        ruleLine.width = 5;
+        ruleLine.tag = -1;
+        ruleLine.layer.cornerRadius = 1;
+        ruleLine.backgroundColor = [UIColor whiteColor];
+        [ruleLines addObject:ruleLine];
+        [self addSubview:ruleLine];
+        
+    }
+
+    for(int i=0;i<ruleLines.count;i+=ruleLines.count/5) {
+        UIView *lineView = ruleLines[i];
+        lineView.width = 9;
+    }
+    
+    NSArray *middles = @[@(0),@(8),@(ruleLines.count-1)];
+    for (int i=0; i<middles.count; i++) {
+        UIView *lineView = ruleLines[ [middles[i] intValue]];
+        UILabel *numLable = [[UILabel alloc] init];
+        int count = i==0?0:i==1?([self getMaxNumber]/2.f):[self getMaxNumber];
+        NSString * numTex = [NSString stringWithFormat:@"%i",count];
+        if (i==1) {
+            if (count==0||count==[self getMaxNumber]) {
+                numTex = @"";
+            }
+        }
+        [numLable setText:numTex andFont:defaultFont(12) andTextColor:[UIColor whiteColor]];
+        [numLable sizeToFit];
+        numLable.left =lineView.right+5;
+        numLable.centerY = lineView.centerY;
+        [self addSubview:numLable];
+    }
+    
+    
+}
+
+- (BOOL)isNearLableCenter:(NSArray *)lablePositions positionX:(float)x gap:(int)gap {
+    for(NSValue * centerV in lablePositions) {
+        CGPoint center = [centerV CGPointValue];
+        float cx = [self convertPoint:CGPointMake(x, 0) toView:lineContenView].x;
+        if (cx-gap<center.x&&cx>=center.x) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - (void)drawRect:(CGRect)rect {
     
-    [self drawGradientColor:UIGraphicsGetCurrentContext() rect:rect options:kCGGradientDrawsBeforeStartLocation colors:@[[QHUtil colorWithHexString:@"#FF2E64"],[QHUtil colorWithHexString:@"#FF5145"]]];
+    [self drawGradientColor:UIGraphicsGetCurrentContext() rect:lineContenView.frame options:kCGGradientDrawsBeforeStartLocation colors:@[[QHUtil colorWithHexString:@"#FF2E64"],[QHUtil colorWithHexString:@"#FF5145"]]];
 }
 
-//绘制渐变色的资料==找了好久http://blog.csdn.net/majiakun1/article/details/17848285
 
 - (void)drawGradientColor:(CGContextRef)p_context
                      rect:(CGRect)p_clipRect
@@ -286,5 +432,6 @@
     CGGradientRelease(gradient);
     CGContextRestoreGState(p_context);// 恢复到之前的context
 }
+
 
 @end
